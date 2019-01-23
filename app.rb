@@ -31,7 +31,7 @@ post '/login/attempt' do
   session[:identity] = params['username']
   @username = params[:username]
   @password = params[:password]
-    if @username == 'admin' && @password == 'secret'
+    if @username == 'admin' && @password == 'secret' #this account admin protection
   where_user_came_from = session[:previous_url] || '/'
   redirect to where_user_came_from
 else

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<title>Sinatra + Twitter Bootstrap</title>
+	<title>Barbershop</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +13,7 @@
 		<div class="container">
 
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="/">Sinatra + Twitter Bootstrap</a>
+				<a class="navbar-brand" href="/">Barbershop</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -23,56 +23,25 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/visit">Visit <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/contact">Contacts <span class="sr-only">(current)</span></a>
+						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<%=username%>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="/login/form">Login</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="/logout">Logout</a>
-							</div>
+									<div class="dropdown-divider"></div>
+								</div>
 						</li>
 					</ul>
 				</div>
 			</nav>
-				<div>
-						<table class="table">
-						  <thead>
-						    <tr>
-						      <th scope="col">We</th>
-						      <th scope="col">are </th>
-						      <th scope="col">open</th>
-						      <th scope="col">at:</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						    <tr>
-						      <th scope="row">1</th>
-						      <td>monday</td>
-						      <td>tuesday</td>
-						      <td>wensday</td>
-						      <td>thursday</td>
-						      <td>friday</td>
-						      <td>saturday</td>
-						      <td>sunday</td>
-						    </tr>
-						    <tr>
-						    	<td>9:00-20:00</td>
-						    	<td>9:00-20:00</td>
-						    	<td>9:00-20:00</td>
-						    	<td>9:00-20:00</td>
-						    	<td>9:00-20:00</td>
-						    	<td>9:00-20:00</td>
-						    	<td>9:00-17:00</td>
-						    	<td>output</td>
-
-
-						    </tr>
-						    
-						  </tbody>
-						</table>
-				</div>
+				
 
 			<div>
 				<%if @error then %>

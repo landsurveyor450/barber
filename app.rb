@@ -7,7 +7,7 @@ end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : 'Hello stranger'
+    session[:identity] ? session[:identity] : 'Admin'
   end
 end
 
@@ -20,8 +20,12 @@ before '/secure/*' do
 end
 
 get '/' do
-  erb 'Can you handle a <a href="/secure/place">secret</a>?'
+  erb :index
 end
+
+get '/visit' do
+  erb :visit
+end  
 
 get '/login/form' do
   erb :login_form
@@ -36,6 +40,7 @@ post '/login/attempt' do
   redirect to where_user_came_from
 else
   erb "input is not correct"
+end
 end
 
 get '/logout' do

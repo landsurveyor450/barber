@@ -27,6 +27,20 @@ get '/visit' do
   erb :visit
 end  
 
+get '/contacts' do
+  erb :contacts
+end
+
+post '/contacts' do
+  @email = params[:email]
+  @comment = params[:comment]
+
+  comm = File.open("/public/comment.txt", "w")
+  comm.write ("Comment: #{@mail} #{@comment}")
+  comm.close
+  erb :index
+end 
+
 get '/login/form' do
   erb :login_form
 end

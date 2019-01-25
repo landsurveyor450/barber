@@ -27,6 +27,20 @@ get '/visit' do
   erb :visit
 end  
 
+post '/visit' do
+
+  @client = params[:client]
+  @phone = params[:phone]
+  @data_visit = params[:data_visit]
+  @barber = params[:barber]
+
+  f = File.open( "./public/client.txt", "w")
+  f.write ("Client #{@client}, phone #{@phone}, data #{@data_visit}, barber: #{@barber}\n")
+  f.close
+  erb :index
+
+end 
+
 get '/contacts' do
   erb :contacts
 end

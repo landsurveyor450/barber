@@ -14,11 +14,13 @@
       <input name="client" type="text" class="form-control" id="inputEmail3" placeholder="Name">
     </div>
   </div>
+  <br>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Phone namber</label>
     <div class="col-sm-10">
       <input name="phone" type="text" class="form-control" id="inputPassword3" placeholder="Phone">
     </div>
+    <br>
     <label for="inputPassword3" class="col-sm-2 control-label">Date visit</label>
     <div class="col-sm-10">
       <input name="data_visit" type="text" class="form-control" id="inputPassword3" placeholder="Date">
@@ -59,7 +61,7 @@
   </div>
 </form>
 	<script>
-    $('#color').simplecolorpicker();
+   $('select[name="colorpicker"]').simplecolorpicker('selectColor', '#7bd148');
   </script>
 </body>
 </html>

@@ -33,9 +33,10 @@ post '/visit' do
   @phone = params[:phone]
   @data_visit = params[:data_visit]
   @barber = params[:barber]
+  @color = params[:color]
 
   f = File.open( "./public/client.txt", "w")
-  f.write ("Client #{@client}, phone #{@phone}, data #{@data_visit}, barber: #{@barber}\n")
+  f.write ("Client #{@client}, phone #{@phone}, data #{@data_visit}, barber: #{@barber} color: #{@color}\n")
   f.close
   erb :index
 

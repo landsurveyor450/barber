@@ -35,6 +35,11 @@ post '/visit' do
   @barber = params[:barber]
   @color = params[:color]
 
+    if @client == '' && @phone == '' && @data_visit ==''
+      @error = "enter data"
+      erb :visit
+    end  
+
   f = File.open( "./public/client.txt", "w")
   f.write ("Client #{@client}, phone #{@phone}, data #{@data_visit}, barber: #{@barber} color: #{@color}\n")
   f.close

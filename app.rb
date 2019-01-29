@@ -93,7 +93,7 @@ post '/visit' do
             return erb :visit
         end
       end  
-      erb :index
+      erb "<h2> Вы записались</h2>"
 end 
 
 get '/contacts' do

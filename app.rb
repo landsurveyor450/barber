@@ -4,8 +4,24 @@ require 'sinatra/reloader'
 require 'pony'
 require 'sqlite3'
 
+def is_barber_exists? db, name
+
+  db.execute('select * from Barbers where name=?',[name]).length > 0
+
+end
+
+def seed_db
+  barbers.each do |barber|
+  if !is_barber_exists? db, barber
+    db.execute 'insert into Barbers (name) value (?)', [barber]
+  end  
+
+end  
+
 def get_db
-  return SQLite3::Database.new 'barbershop.db'
+  db = SQLite3::Database.new 'barbershop.db'
+  db.results_as_hash = true
+  return db
 end   
 
 configure do
@@ -20,6 +36,14 @@ configure do
     "barber"	TEXT,
     "color"	TEXT
   );'
+
+  db = 'CREATE TABLE IF NOT EXISTS "Barbers" (
+    "id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name"	TEXT,
+  );'
+
+  seed_db db, ['Вася Пупкин', 'Игорь Капуста', 'Мила Людмила', 'Федор Пух', 'Яна Трирубляинаша']
+
 end
 
 helpers do
@@ -100,7 +124,7 @@ post '/login/attempt' do
   session[:identity] = params['username']
   @username = params[:username]
   @password = params[:password]
-  
+
     if @username == 'admin' && @password == 'secret' #this account admin protection
   where_user_came_from = session[:previous_url] || '/'
   redirect to where_user_came_from

@@ -5,7 +5,7 @@ require 'pony'
 require 'sqlite3'
 
 def get_db
-  return SQLite::Database.new 'barbershop.db'
+  return SQLite3::Database.new 'barbershop.db'
 end   
 
 configure do

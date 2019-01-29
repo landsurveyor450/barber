@@ -1,9 +1,20 @@
 require 'rubygems'
 require 'sinatra'
 require 'pony'
+require 'sqlite3'
 
 configure do
   enable :sessions
+  
+  db = get_db
+  db = 'CREATE TABLE IF NOT EXISTS "Users" (
+    "id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+    "client"	TEXT,
+    "phone"	TEXT,
+    "data_visit"	TEXT,
+    "barber"	TEXT,
+    "color"	TEXT
+  );'
 end
 
 helpers do
@@ -36,10 +47,8 @@ post '/visit' do
   @barber = params[:barber]
   @color = params[:color]
 
-  f = File.open( "./public/client.txt", "w")
-  f.write ("Client #{@client}, phone #{@phone}, data #{@data_visit}, barber: #{@barber} color: #{@color}\n")
-  f.close
-  erb :index
+  db = get_db
+  db.execute 'insert into Users (client, phone, data_visit, barber, color) values (?, ?, ?, ?, ?)', [@client, @phone, @data_visit, @barber,@color]
 
   hh = {:client => "enter Name", :phone =>"enter phone", :date_visit => "enter date"}
       hh.each do |key, value|
@@ -48,7 +57,7 @@ post '/visit' do
             return erb :visit
         end
       end  
-
+      erb :index
 end 
 
 get '/contacts' do
@@ -76,7 +85,6 @@ Pony.mail({
   }
 })
   erb :contacts
-end
 end 
 
 get '/login/form' do
@@ -103,3 +111,7 @@ end
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
+
+def get_db
+   return SQLite::Database.new 'barbershop.db'
+end   

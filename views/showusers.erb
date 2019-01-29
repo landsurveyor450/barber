@@ -1,6 +1,15 @@
 <h2>Users</h2>
     <table class="table">
-
+    <thead>
+    <tr>
+    <td>Name</td>
+    <td>Phone</td>
+    <td>Date_visit</td>
+    <td>barber</td>
+    <td>Color</td>
+    </tr>
+    </thead>
+    <tbody>
     <%=@results%>
         <% @results.each do |row| %>
             <tr>
@@ -12,19 +21,6 @@
             </tr>
 
         <% end %>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        <tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        <tr>
-         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        <tr>
+        </tbody>
+      
     </table>

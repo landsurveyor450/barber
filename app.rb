@@ -100,6 +100,7 @@ post '/login/attempt' do
   session[:identity] = params['username']
   @username = params[:username]
   @password = params[:password]
+  
     if @username == 'admin' && @password == 'secret' #this account admin protection
   where_user_came_from = session[:previous_url] || '/'
   redirect to where_user_came_from
@@ -120,7 +121,7 @@ end
 get '/showusers' do
     db = get_db
 
-    db.execute 'select * from Users order by id desc'
+    @results = db.execute 'select * from Users order by id desc'
 
     erb :showusers
 end  

@@ -12,8 +12,9 @@ end
 
 def seed_db
   barbers.each do |barber|
-  if !is_barber_exists? db, barber
-    db.execute 'insert into Barbers (name) value (?)', [barber]
+    if !is_barber_exists? db, barber
+      db.execute 'insert into Barbers (name) value (?)', [barber]
+    end   
   end  
 
 end  
@@ -23,6 +24,12 @@ def get_db
   db.results_as_hash = true
   return db
 end   
+
+before do
+  db = get_db
+  @barbers = db.execute 'select * from Barbers' 
+
+end
 
 configure do
   enable :sessions
@@ -97,22 +104,22 @@ post '/contacts' do
   username = params[:username]
   message = params[:message]
  
-Pony.mail({
-  :to => 'a.og2009@yandex.ru',
-  :from => 'landsurveyor450@gmail.com',
-  :via => :smtp,
-  :subject => "Новое сообщение от пользователя #{username}",
-  :body => "#{message}",
-  :via_options => {
-    :address              => 'smtp.gmail.com',
-    :port                 => '587',
-    :enable_starttls_auto => true,
-    :user_name            => 'landsurveyor450',
-    :password             => 'Rjvgkbdbn8',
-    :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
-    :domain               => "127.0.0.1" # the HELO domain provided by the client to the server
-  }
-})
+    Pony.mail({
+      :to => 'a.og2009@yandex.ru',
+      :from => 'landsurveyor450@gmail.com',
+      :via => :smtp,
+      :subject => "Новое сообщение от пользователя #{username}",
+      :body => "#{message}",
+      :via_options => {
+        :address              => 'smtp.gmail.com',
+        :port                 => '587',
+        :enable_starttls_auto => true,
+        :user_name            => 'landsurveyor450',
+        :password             => 'Rjvgkbdbn8',
+        :authentication       => :plain, # :plain, :login, :cram_md5, no auth by default
+        :domain               => "127.0.0.1" # the HELO domain provided by the client to the server
+      }
+    })
   erb :contacts
 end 
 
@@ -126,11 +133,11 @@ post '/login/attempt' do
   @password = params[:password]
 
     if @username == 'admin' && @password == 'secret' #this account admin protection
-  where_user_came_from = session[:previous_url] || '/'
-  redirect to where_user_came_from
-else
-  erb "input is not correct"
-end
+      where_user_came_from = session[:previous_url] || '/'
+      redirect to where_user_came_from
+    else
+      erb "input is not correct"
+    end
 end
 
 get '/logout' do
@@ -148,5 +155,6 @@ get '/showusers' do
     @results = db.execute 'select * from Users order by id desc'
 
     erb :showusers
-end  
+end 
+
 

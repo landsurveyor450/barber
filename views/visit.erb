@@ -35,11 +35,10 @@
      <label for="inputPassword3" class="col-sm-2 control-label">Barbers</label>
   </div>
         <select name="barber" class="form-control">
-            <option>Вася Пупкин</option>
-            <option>Игорь Капуста</option>
-            <option>Мила людмила</option>
-            <option>Федор Пух</option>
-            <option>Яна Трирубляинаша</option>
+            <%@barbers.each do |item|%>
+              <options><%=item['name']%></options>
+            <%end%>  
+            
         </select>
   </div>
   <br>

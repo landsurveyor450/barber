@@ -117,3 +117,11 @@ get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
 
+get '/showusers' do
+    db = get_db
+
+    db.execute 'select * from Users order by id desc'
+
+    erb :showusers
+end  
+

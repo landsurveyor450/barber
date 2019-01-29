@@ -1,0 +1,30 @@
+<h2>Users</h2>
+    <table class="table">
+
+    <%=@results%>
+        <% @results.each do |row| %>
+            <tr>
+                <td><%= row['client'] %></td>
+                <td><%= row['phone'] %></td>
+                <td><%= row['data_visit'] %></td>
+                <td><%= row['barber'] %></td>
+                <td><%= row['color'] %></td>
+            </tr>
+
+        <% end %>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        <tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        <tr>
+         <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        <tr>
+    </table>

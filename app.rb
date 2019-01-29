@@ -1,7 +1,12 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/reloader'
 require 'pony'
 require 'sqlite3'
+
+def get_db
+  return SQLite::Database.new 'barbershop.db'
+end   
 
 configure do
   enable :sessions
@@ -112,6 +117,3 @@ get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
 
-def get_db
-   return SQLite::Database.new 'barbershop.db'
-end   

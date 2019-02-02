@@ -27,7 +27,7 @@ end
 
 before do
   db = get_db
-  @barbers = db.execute 'select * from Barbers' 
+  #@barbers = db.execute 'select * from Barbers' 
 
 end
 
@@ -49,7 +49,7 @@ configure do
     "name"	TEXT,
   );'
 
-  seed_db db, ['Вася Пупкин', 'Игорь Капуста', 'Мила Людмила', 'Федор Пух', 'Яна Трирубляинаша']
+  #seed_db db, ['Вася Пупкин', 'Игорь Капуста', 'Мила Людмила', 'Федор Пух', 'Яна Трирубляинаша']
 
 end
 
